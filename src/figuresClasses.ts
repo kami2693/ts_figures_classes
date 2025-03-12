@@ -1,11 +1,11 @@
-// Інтерфейс Figure
+// Інтерфейс для фігур
 export interface Figure {
   shape: string;
   color: string;
   getArea(): number;
 }
 
-// Клас Triangle
+// Клас для трикутника
 export class Triangle implements Figure {
   shape = 'triangle';
 
@@ -17,18 +17,18 @@ export class Triangle implements Figure {
   ) {
     // Перевірка на коректність сторін
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('All sides must be greater than 0.');
+      throw new Error('Усі сторони мають бути більше 0.');
     }
 
-    // Перевірка на трикутник (нерівність трикутника)
+    // Перевірка на нерівність трикутника
     const sides = [a, b, c].sort((x, y) => x - y);
 
     if (sides[2] >= sides[0] + sides[1]) {
-      throw new Error('Invalid triangle');
+      throw new Error('Невірний трикутник');
     }
   }
 
-  // Метод для обчислення площі трикутника за формулою Герона
+  // Метод для обчислення площі за формулою Герона
   getArea(): number {
     const s = (this.a + this.b + this.c) / 2; // Напівпериметр
     const area = Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
@@ -37,7 +37,7 @@ export class Triangle implements Figure {
   }
 }
 
-// Клас Circle
+// Клас для кола
 export class Circle implements Figure {
   shape = 'circle';
 
@@ -47,7 +47,7 @@ export class Circle implements Figure {
   ) {
     // Перевірка на коректність радіуса
     if (radius <= 0) {
-      throw new Error('Radius must be greater than 0.');
+      throw new Error('Радіус має бути більше 0.');
     }
   }
 
@@ -59,7 +59,7 @@ export class Circle implements Figure {
   }
 }
 
-// Клас Rectangle
+// Клас для прямокутника
 export class Rectangle implements Figure {
   shape = 'rectangle';
 
@@ -70,7 +70,7 @@ export class Rectangle implements Figure {
   ) {
     // Перевірка на коректність ширини та висоти
     if (width <= 0 || height <= 0) {
-      throw new Error('Width and height must be greater than 0.');
+      throw new Error('Ширина та висота мають бути більше 0.');
     }
   }
 
@@ -82,7 +82,7 @@ export class Rectangle implements Figure {
   }
 }
 
-// Функція getInfo
+// Функція для отримання інформації про фігуру
 export function getInfo(figure: Figure): string {
   const area = figure.getArea();
 
